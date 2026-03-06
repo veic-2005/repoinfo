@@ -1,0 +1,37 @@
+// repoInfo.idl : IDL source for repoInfo
+//
+
+// This file will be processed by the MIDL tool to
+// produce the type library (repoInfo.tlb) and marshalling code.
+
+import "oaidl.idl";
+import "ocidl.idl";
+
+[
+	object,
+	uuid(0AA81A7A-885B-4FF0-87C7-707740257C6C),
+	dual,
+	nonextensible,
+	helpstring("ILabelInfo Interface"),
+	pointer_default(unique)
+]
+interface ILabelInfo : IDispatch{
+	[id(1), helpstring("method getInfo")] HRESULT getInfo([in] BSTR labelStr, [out,retval] BSTR* ret);
+};
+[
+	uuid(982BB33E-2B67-4EC8-9216-AD9BDFF57C49),
+	version(1.0),
+	helpstring("repoInfo 1.0 Type Library")
+]
+library repoInfoLib
+{
+	importlib("stdole2.tlb");
+	[
+		uuid(5008843B-6715-47EC-81F9-965F9419D5FE),
+		helpstring("LabelInfo Class")
+	]
+	coclass LabelInfo
+	{
+		[default] interface ILabelInfo;
+	};
+};

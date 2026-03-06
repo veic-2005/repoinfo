@@ -1,0 +1,26 @@
+HKCR
+{
+	repoInfo.LabelInfo.1 = s 'LabelInfo Class'
+	{
+		CLSID = s '{5008843B-6715-47EC-81F9-965F9419D5FE}'
+	}
+	repoInfo.LabelInfo = s 'LabelInfo Class'
+	{
+		CLSID = s '{5008843B-6715-47EC-81F9-965F9419D5FE}'
+		CurVer = s 'repoInfo.LabelInfo.1'
+	}
+	NoRemove CLSID
+	{
+		ForceRemove {5008843B-6715-47EC-81F9-965F9419D5FE} = s 'LabelInfo Class'
+		{
+			ProgID = s 'repoInfo.LabelInfo.1'
+			VersionIndependentProgID = s 'repoInfo.LabelInfo'
+			ForceRemove 'Programmable'
+			InprocServer32 = s '%MODULE%'
+			{
+				val ThreadingModel = s 'Apartment'
+			}
+			'TypeLib' = s '{982BB33E-2B67-4EC8-9216-AD9BDFF57C49}'
+		}
+	}
+}
