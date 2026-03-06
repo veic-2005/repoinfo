@@ -1,0 +1,64 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>报文数据信息 - IE</title>
+
+<script type="text/javascript">
+	var RepoInfo = {
+		};
+	
+	RepoInfo.getObj = function(objName) {
+		return new ActiveXObject(objName);
+	};
+	
+	RepoInfo.getArray = function(str) {
+		var ret = new Array(16);
+		
+		var string = str.replace(/\s/g, "");
+		alert(string);
+		
+		ret = string.split(",");
+		
+		return ret;
+	};
+	
+	RepoInfo.decode = function(string) {
+		if (string == null) return;
+		
+		var obj = RepoInfo.getObj("repoInfo.LabelInfo");
+		var edtView = document.getElementById("edtView");
+		edtView.value = " ";
+		
+		var str = RepoInfo.getArray(string);
+		if (obj != null)
+			edtView.value = obj.getInfo(str);
+	};
+	
+</script>
+</head>
+
+<body>
+                    
+	  
+	<textarea name="note" cols="98" rows="7" readonly="readonly">
+       注意：本测试只能运行在IE浏览器！
+
+  首先，要注册Dll（regsvr32 repoInfo.dll）；
+  然后，从“BinJiang_2005.rep”（滨江站），复制行数据到“标签数据”框。
+
+  示例（固定格式）：
+    0xD3, 0x05, 0x94, 0x84, 0x00, 0x13, 0x51, 0x2F, 0x59, 0x34, 0x57, 0x45, 0x58, 0x50, 0x41, 0x98</textarea>
+<br>
+<br>
+标签数据：<input type="text" id="edtData" size="98" />
+
+<br>
+<br>
+执行结果：<input type="text" id="edtView" size="50" />
+<br>
+<br>
+                  
+<input type="button" id="btnOk" value="执行数据解析" onClick="RepoInfo.decode(document.getElementById('edtData').value)" />
+</body>
+</html>
